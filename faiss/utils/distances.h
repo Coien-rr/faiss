@@ -320,6 +320,7 @@ void knn_inner_product(
         int64_t* indexes,
         const IDSelector* sel = nullptr);
 
+// NOTE: inner knn_L2sqr
 /** Return the k nearest neighbors of each of the nx vectors x among the ny
  *  vector y, for the L2 distance
  * @param x    query vectors, size nx * d
@@ -338,9 +339,9 @@ void knn_L2sqr(
         const float* y_norm2 = nullptr,
         const IDSelector* sel = nullptr);
 
+// NOTE: outter knn_L2sqr
 /**  Return the k nearest neighbors of each of the nx vectors x among the ny
  *  vector y, for the L2 distance
- *
  * @param x    query vectors, size nx * d
  * @param y    database vectors, size ny * d
  * @param distances  output distances, size nq * k

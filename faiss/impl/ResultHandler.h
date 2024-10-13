@@ -84,7 +84,6 @@ struct ResultHandler {
  * Tracks the only best result, thus avoiding storing
  * some temporary data in memory.
  *****************************************************************/
-
 template <class C, bool use_sel = false>
 struct Top1BlockResultHandler : BlockResultHandler<C, use_sel> {
     using T = typename C::T;
@@ -92,9 +91,9 @@ struct Top1BlockResultHandler : BlockResultHandler<C, use_sel> {
     using BlockResultHandler<C, use_sel>::i0;
     using BlockResultHandler<C, use_sel>::i1;
 
-    // contains exactly nq elements
+    // contains exactly nq elements for distances
     T* dis_tab;
-    // contains exactly nq elements
+    // contains exactly nq elements for ids
     TI* ids_tab;
 
     Top1BlockResultHandler(
@@ -624,6 +623,8 @@ typename Consumer::T dispatch_knn_ResultHandler(
         const IDSelector* sel,
         Consumer& consumer,
         Types... args) {
+// TODO: Use lambda instead of local macro
+// NOTE: Define a local macro
 #define DISPATCH_C_SEL(C, use_sel)                                          \
     if (k == 1) {                                                           \
         Top1BlockResultHandler<C, use_sel> res(nx, vals, ids, sel);         \
@@ -651,6 +652,7 @@ typename Consumer::T dispatch_knn_ResultHandler(
             DISPATCH_C_SEL(C, false);
         }
     }
+// NOTE: unDefine the local macro above
 #undef DISPATCH_C_SEL
 }
 

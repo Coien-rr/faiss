@@ -212,6 +212,7 @@ float fvec_norm_L2sqr(const float* x, size_t d) {
 }
 FAISS_PRAGMA_IMPRECISE_FUNCTION_END
 
+// NOTE: why not using omp??
 FAISS_PRAGMA_IMPRECISE_FUNCTION_BEGIN
 float fvec_L2sqr(const float* x, const float* y, size_t d) {
     size_t i;

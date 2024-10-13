@@ -693,6 +693,8 @@ void knn_inner_product(
     knn_inner_product(x, y, d, nx, ny, res->k, res->val, res->ids, sel);
 }
 
+// NOTE: WTF! unconsistency between function declarations and defined formal
+// parameter names
 void knn_L2sqr(
         const float* x,
         const float* y,
